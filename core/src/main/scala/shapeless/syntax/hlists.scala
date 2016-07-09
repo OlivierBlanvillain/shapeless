@@ -167,7 +167,7 @@ final class HListOps[L <: HList](l : L) extends Serializable {
    * types in `SL`.
    */
   def removeAll[SL <: HList](implicit removeAll : RemoveAll[L, SL]): removeAll.Out = removeAll(l)
-  
+
   /**
    * Returns the union between this `HList` and another `HList`. In case of duplicate types, this operation is a
    * order-preserving multi-set union. If type `T` appears n times in this `HList` and m > n times in `M`, the
@@ -175,7 +175,7 @@ final class HListOps[L <: HList](l : L) extends Serializable {
    * of type `T` in `M`.
    */
   def union[M <: HList](s: M)(implicit union: Union[L, M]): union.Out = union(l, s)
-  
+
   /**
    * Returns the intersection between this `HList` and another `HList`. In case of duplicate types, this operation is a
    * multiset intersection. If type `T` appears n times in this `HList` and m < n times in `M`, the resulting `HList`
@@ -183,7 +183,7 @@ final class HListOps[L <: HList](l : L) extends Serializable {
    * Also available if `M` contains types absent in this `HList`.
    */
   def intersect[M <: HList](implicit intersection: Intersection[L, M]): intersection.Out = intersection(l)
-  
+
   /**
    * Returns the difference between this `HList` and another `HList`. In case of duplicate types, this operation is a
    * multiset difference. If type `T` appears n times in this `HList` and m < n times in `M`, the resulting `HList`
@@ -191,7 +191,7 @@ final class HListOps[L <: HList](l : L) extends Serializable {
    * Also available if `M` contains types absent in this `HList`.
    */
   def diff[M <: HList](implicit diff: Diff[L, M]): diff.Out = diff(l)
-  
+
   /**
    * Reinserts an element `U` into this `HList` to return another `HList` `O`.
    */
@@ -580,7 +580,7 @@ final class HListOps[L <: HList](l : L) extends Serializable {
    * Converts this `HList` to an ordinary `List` of elements typed as the least upper bound of the types of the elements
    * of this `HList`.
    */
-  def toList[Lub](implicit toTraversableAux : ToTraversable.Aux[L, List, Lub]) : toTraversableAux.Out = toTraversableAux(l)
+  def toList[Lub](implicit toTraversableAux: ToTraversable.Aux[L, List, Lub]): List[Lub] = toTraversableAux(l)
 
   /**
    * Converts this `HList` to an `Array` of elements typed as the least upper bound of the types of the elements
@@ -590,7 +590,7 @@ final class HListOps[L <: HList](l : L) extends Serializable {
    * particular, the inferred type will be too precise (ie. `Product with Serializable with CC` for a typical case class
    * `CC`) which interacts badly with the invariance of `Array`s.
    */
-  def toArray[Lub](implicit toTraversableAux : ToTraversable.Aux[L, Array, Lub]) : toTraversableAux.Out = toTraversableAux(l)
+  def toArray[Lub](implicit toTraversableAux: ToTraversable.Aux[L, Array, Lub]): Array[Lub] = toTraversableAux(l)
 
   /**
     * Converts this `HList` to a `M` of elements embedded in a minimal `Coproduct` encompassing the types of every
@@ -689,7 +689,7 @@ final class HListOps[L <: HList](l : L) extends Serializable {
 
   /**
    * Finds the first element of the HList for which the given Poly is defined, and applies the Poly to it.
-   */ 
+   */
   def collectFirst[P <: Poly](p: P)(implicit collect: CollectFirst[L, p.type]): collect.Out = collect(l)
 
   /**
