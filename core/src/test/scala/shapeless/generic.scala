@@ -1122,9 +1122,7 @@ object PrivateCtorDefns {
 object PrivateCtor {
   import PrivateCtorDefns._
 
-  illTyped("""
-  Generic[Access.PublicFamily]
-  """)
+  illTyped("Generic[PublicFamily]", "could not find implicit value for parameter.*")
 }
 
 object Thrift {
