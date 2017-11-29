@@ -747,9 +747,6 @@ package GenericTestsAux2 {
     }
   }
 
-  // This should compile correctly, however, the corresponding pattern match
-  // falls foul of https://issues.scala-lang.org/browse/SI-9220
-  /*
   object Outer5 {
     trait Command
     object Command {
@@ -761,7 +758,6 @@ package GenericTestsAux2 {
 
     Generic[Command.Execution]
   }
-  */
 }
 
 object MixedCCNonCCNested {
